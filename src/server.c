@@ -172,7 +172,7 @@ void *handle_client(void *arg)
         }
 
         bzero(buffer, BUFFER_SZ);
-    }
+    }//comment
 
     close(cli->sockfd);
     queue_remove(cli->uid);
