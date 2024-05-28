@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.0)
+project(LocalMessage)
+
+# Find necessary libraries (adjust based on your chosen IPC mechanism)
+find_package(Threads REQUIRED)  # Needed for most IPC mechanisms
+
+# Set source and header file locations
+set(SOURCE_FILES src/local_message.cpp)
+set(HEADER_FILES include/local_message.h)
+
+# Add optional IPC source file if separate
+if(EXISTS src/ipc.cpp)
+  list(APPEND SOURCE_FILES src/ipc.cpp)
+endif(EXISTS src/ipc.cpp)
+
+# Compile the executable
+add_executable(local_message ${SOURCE_FILES} ${HEADER_FILES})
+
+# Link with required libraries (adjust based on your chosen IPC mechanism)
+target_link_libraries(local_message Threads)
