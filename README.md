@@ -14,7 +14,7 @@ This project implements a simple chat program with a server that can handle mult
 ## Requirements
 - C++11 or later
 - CMake 3.10 or later
-- POSIX-compliant system (e.g., Linux, macOS)
+- Linux system (Ubuntu for example)
 
 ## Setup and Installation
 
