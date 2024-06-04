@@ -20,8 +20,8 @@ This project implements a simple chat program with a server that can handle mult
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/Simple-Server-and-Chat-Program.git
-cd Simple-Server-and-Chat-Program
+git clone https://github.com/Nandhni03/LocalMessage.git
+cd simple-version
 ```
 
 ### 2. Build the Project
