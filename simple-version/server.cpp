@@ -11,10 +11,11 @@
 #include <mutex>
 #include <algorithm> // Include this for std::remove
 
-using namespace std;
+using namespace std; // mot good practice...
 
 vector<int> clients;
-mutex clients_mutex;
+mutex clients_mutex; //ensures thread safe access to the clients vector
+
 
 void handle_client(int client_socket, string client_name)
 {
@@ -25,7 +26,8 @@ void handle_client(int client_socket, string client_name)
     // Send confirmation message to the client
     string confirmation_message = "=> Connection confirmed, you are good to go...\n";
     send(client_socket, confirmation_message.c_str(), confirmation_message.length(), 0);
-
+    
+    // receiving message 
     while (!isExit)
     {
         memset(buffer, 0, bufsize);
@@ -42,7 +44,6 @@ void handle_client(int client_socket, string client_name)
             // Broadcast the message to all other clients
             if (bytesReceived > 0)
             {
-                // Prepend sender name and colon to the message
                 string message = client_name + ": " + string(buffer, 0, bytesReceived);
                 lock_guard<mutex> guard(clients_mutex);
                 for (int client : clients)
@@ -75,7 +76,8 @@ int main()
         exit(1);
     }
     cout << "\n=> Socket server has been created..." << endl;
-
+    
+    // server address
     server_addr.sin_family = AF_INET;
     server_addr.sin_addr.s_addr = htons(INADDR_ANY);
     server_addr.sin_port = htons(portNum);
@@ -88,7 +90,8 @@ int main()
 
     cout << "=> Looking for clients..." << endl;
     listen(server_socket, 5);
-
+    
+    //accept and handle clients
     while (true)
     {
         int client_socket = accept(server_socket, (struct sockaddr *)&server_addr, &size);

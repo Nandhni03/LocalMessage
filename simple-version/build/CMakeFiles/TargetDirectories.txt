@@ -1,4 +1,0 @@
-/home/LocalMessage/simple-version/build/CMakeFiles/server.dir
-/home/LocalMessage/simple-version/build/CMakeFiles/client.dir
-/home/LocalMessage/simple-version/build/CMakeFiles/edit_cache.dir
-/home/LocalMessage/simple-version/build/CMakeFiles/rebuild_cache.dir

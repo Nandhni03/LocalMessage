@@ -10,6 +10,7 @@
 
 using namespace std;
 
+//receiving data from server and printing to the console
 void receive_messages(int client_socket) {
     char buffer[1024];
     int bufsize = 1024;
@@ -31,12 +32,13 @@ int main() {
     bool isExit = false;
     int bufsize = 1024;
     char buffer[bufsize];
-    char* ip = "127.0.0.1";
+    const char* ip = "127.0.0.1";
     string client_name;
 
     cout << "Enter your name: ";
     cin >> client_name;
 
+    //creating socket
     struct sockaddr_in server_addr;
     client = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -46,7 +48,8 @@ int main() {
     }
 
     cout << "\n=> Socket client has been created..." << endl;
-
+    
+    //the address of the server
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(portNum);
     inet_pton(AF_INET, ip, &server_addr.sin_addr);
@@ -57,13 +60,15 @@ int main() {
         cout << "=> Connection failed." << endl;
         return -1;
     }
-
+    
+    //connect the client with the server
     send(client, client_name.c_str(), client_name.length(), 0);
 
     thread(receive_messages, client).detach();
 
     cout << "=> Enter # to end the connection\n" << endl;
-
+    
+    //sending the message
     while (!isExit) {
         cout << client_name << ": ";
         cin >> buffer;
